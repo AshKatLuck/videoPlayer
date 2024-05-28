@@ -47,6 +47,13 @@ function updateProgressBar(){
     duration.textContent=`${displayTime(video.duration)}`;
 }
 
+//function to to see and set the progress of the video to th point where user has clicked
+function setProgressBar(e){
+    const newTime=e.offsetX/progressRange.offsetWidth;
+    progressBar.style.width=`${newTime*100}%`;
+    video.currentTime=newTime*video.duration;
+}
+
 // Volume Controls --------------------------- //
 
 
@@ -64,3 +71,4 @@ video.addEventListener('click', togglePlay);
 video.addEventListener('ended',showPlayIcon);
 video.addEventListener('timeupdate', updateProgressBar);
 video.addEventListener('canplay', updateProgressBar);
+progressRange.addEventListener('click', setProgressBar);
